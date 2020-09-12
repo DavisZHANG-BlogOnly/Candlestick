@@ -1,0 +1,915 @@
+{
+  "dataRoles": [
+    {
+      "displayName": "Date",
+      "displayNameKey": "date",
+      "kind": "Grouping",
+      "name": "da"
+    },
+    {
+      "displayName": "Close",
+      "displayNameKey": "close",
+      "kind": "Measure",
+      "name": "cl"
+    },
+    {
+      "displayName": "Open",
+      "displayNameKey": "open",
+      "kind": "Measure",
+      "name": "op"
+    },
+    {
+      "displayName": "High",
+      "displayNameKey": "high",
+      "kind": "Measure",
+      "name": "hi"
+    },
+    {
+      "displayName": "Low",
+      "displayNameKey": "low",
+      "kind": "Measure",
+      "name": "lo"
+    },
+    {
+      "displayName": "Lines",
+      "displayNameKey": "Lines",
+      "kind": "Measure",
+      "name": "li"
+    }
+  ],
+  "dataViewMappings": [
+    {
+      "conditions": [
+        {
+            "da":
+            {
+                "max": 1
+            },
+            "cl":
+            {
+                "max": 1
+            },
+            "op":
+            {
+                "max": 1
+            },
+            "hi":
+            {
+                "max": 1
+            },
+            "lo":
+            {
+                "max": 1
+            },
+            "li":
+            {
+                "min": 0,
+                "max": 4
+            }
+        } ],
+      "scriptResult": {
+        "dataInput": {
+          "table": {
+            "rows": {
+              "select": [
+                {
+                  "for": {
+                    "in": "da"
+                  }
+                },
+                {
+                  "for": {
+                    "in": "cl"
+                  }
+                },
+                {
+                  "for": {
+                    "in": "op"
+                  }
+                },
+                {
+                  "for": {
+                    "in": "hi"
+                  }
+                },
+                {
+                  "for": {
+                    "in": "lo"
+                  }
+                },
+                {
+                  "for": {
+                    "in": "li"
+                  }
+                }
+              ],
+              "dataReductionAlgorithm": {
+                "top": {
+                  "count":3000
+                }
+              }
+            }
+          }
+        },
+        "script": {
+          "scriptProviderDefault": "R",
+          "scriptOutputType": "html",
+          "source": {
+            "objectName": "rcv_script",
+            "propertyName": "source"
+          },
+          "provider": {
+            "objectName": "rcv_script",
+            "propertyName": "provider"
+          }
+        }
+      }
+    }
+  ],
+  "objects": {
+    "candlestick": {
+      "displayName": "Candles",
+      "displayNameKey": "Candlestick",     
+      "properties": {
+        "CandleStyle": {
+          "displayName": "Candle Style",
+          "displayNameKey": "CandleStyle",
+          "description": "Candle Style",
+          "type": {
+            "enumeration": [
+              {
+                "displayName": "Classical",
+                "displayNameKey": "classical",
+                "value": "classical"
+              },
+              {
+                "displayName": "Caps",
+                "displayNameKey": "caps",
+                "value": "caps"
+              },
+              {
+                "displayName": "Yin-yang",
+                "displayNameKey": "yin-yang",
+                "value": "yin-yang"
+              },
+              {
+                "displayName": "Yin-yang with Caps",
+                "displayNameKey": "yin-yang with caps",
+                "value": "yin-yang with caps"
+              }
+            ]          
+          }
+        },
+        "GoodColor": {
+          "displayName": "Good Color",
+          "displayNameKey": "GoodColor",
+          "type": {
+            "fill": {
+              "solid": {
+                "color": true
+              }
+            }
+          }
+        },
+        "BadColor": {
+          "displayName": "Bad Color",
+          "displayNameKey": "BadColor",
+          "type": {
+            "fill": {
+              "solid": {
+                "color": true
+              }
+            }
+          }
+        }
+      }
+    },
+    "lines": {
+      "displayName": "Lines",
+      "displayNameKey": "Lines",     
+      "properties": {
+        "ma05": {
+          "displayName": "MA05",
+          "displayNameKey": "MA05",
+          "description": "5 DAYS MOVING AVG",
+          "type": {
+            "bool": true
+          }
+        },
+        "ma10": {
+          "displayName": "MA10",
+          "displayNameKey": "MA10",
+          "description": "10 DAYS MOVING AVG",
+          "type": {
+            "bool": true
+          }
+        },
+        "ma20": {
+          "displayName": "MA20",
+          "displayNameKey": "MA20",
+          "description": "20 DAYS MOVING AVG",
+          "type": {
+            "bool": true
+          }
+        },
+        "ma30": {
+          "displayName": "MA30",
+          "displayNameKey": "MA30",
+          "description": "30 DAYS MOVING AVG",
+          "type": {
+            "bool": true
+          }
+        },
+        "ma60": {
+          "displayName": "MA60",
+          "displayNameKey": "MA60",
+          "description": "60 DAYS MOVING AVG",
+          "type": {
+            "bool": true
+          }
+        },
+        "ma_customized": {
+          "displayName": "MA (customized)",
+          "displayNameKey": "ma_customized",
+          "type": {
+            "bool": true
+          }
+        },
+        "ma_customized_items": {
+          "displayName": "Items",
+          "displayNameKey": "Items",
+          "placeHolderText":"Input an integer here",
+          "type": {
+            "numeric": true
+          }
+        },
+        "ma_customized_name": {
+          "displayName": "Name",
+          "displayNameKey": "Name",
+          "description": "Name of this MA line",
+          "placeHolderText":"Default",
+          "type": {
+            "text": true
+          }
+        },
+        "ma_customized_color": {
+          "displayName": "Color",
+          "displayNameKey": "ma_customized_color",
+          "type": {
+            "fill": {
+              "solid": {
+                "color": true
+              }
+            }
+          }
+        },
+        "LineColor_3": {
+          "displayName": "Line 3",
+          "displayNameKey": "Line_3",
+          "type": {
+            "fill": {
+              "solid": {
+                "color": true
+              }
+            }
+          }
+        },
+        "LineColor_4": {
+          "displayName": "Line 4",
+          "displayNameKey": "Line_4",
+          "type": {
+            "fill": {
+              "solid": {
+                "color": true
+              }
+            }
+          }
+        }
+      }
+    },
+    "xAxis": {
+      "displayName": "X Axis",
+      "displayNameKey": "X_Axis",     
+      "properties": {
+        "show": {
+          "type": {
+            "bool": true
+          }
+        },
+        "Fonts": {
+          "displayName": "Fonts",
+          "displayNameKey": "Fonts",
+          "description": "Setting Fonts",
+          "type": {
+            "enumeration": [
+              {
+                "displayName": "Default",
+                "displayNameKey": "FontsDefault",
+                "value": "Arial"
+              },
+              {
+                "displayName": "Balto",
+                "displayNameKey": "Balto",
+                "value": "Balto"
+              },
+              {
+                "displayName": "Courier New",
+                "displayNameKey": "Courier New",
+                "value": "Courier New"
+              },
+              {
+                "displayName": "Droid Sans",
+                "displayNameKey": "Droid Sans",
+                "value": "Droid Sans"
+              },
+              {
+                "displayName": "Droid Serif",
+                "displayNameKey": "Droid Serif",
+                "value": "Droid Serif"
+              },
+              {
+                "displayName": "Droid Sans Mono",
+                "displayNameKey": "Droid Sans Mono",
+                "value": "Droid Sans Mono"
+              },
+              {
+                "displayName": "Gravitas One",
+                "displayNameKey": "Gravitas One",
+                "value": "Gravitas One"
+              },
+              {
+                "displayName": "Old Standard TT",
+                "displayNameKey": "Old Standard TT",
+                "value": "Old Standard TT"
+              },
+              {
+                "displayName": "Open Sans",
+                "displayNameKey": "Open Sans",
+                "value": "Open Sans"
+              },
+              {
+                "displayName": "Sans Serif",
+                "displayNameKey": "sans serif",
+                "value": "sans serif"
+              },
+              {
+                "displayName": "Raleway",
+                "displayNameKey": "Raleway",
+                "value": "Raleway"
+              },
+              {
+                "displayName": "Times New Roman",
+                "displayNameKey": "Times New Roman",
+                "value": "Times New Roman"
+              }
+            ]          
+        }
+      },
+      "Format": {
+        "displayName": "Date Format",
+        "displayNameKey": "DateFormat",
+        "description": "Date Format",
+        "type": {
+          "enumeration": [
+            {
+              "displayName": "2019",
+              "displayNameKey": "2019",
+              "value": "%Y"
+            },
+            {
+              "displayName": "2019-12",
+              "displayNameKey": "2019-12",
+              "value": "%Y-%m"
+            },
+            {
+              "displayName": "2019/12",
+              "displayNameKey": "2019/12",
+              "value": "%Y/%m"
+            },
+            {
+              "displayName": "12/2019",
+              "displayNameKey": "12/2019",
+              "value": "%m/%Y"
+            },
+            {
+              "displayName": "19/12",
+              "displayNameKey": "19/12",
+              "value": "%y/%m"
+            },
+            {
+              "displayName": "12/19",
+              "displayNameKey": "12/19",
+              "value": "%m/%y"
+            },
+            {
+              "displayName": "12-31",
+              "displayNameKey": "12-31",
+              "value": "%m-%d"
+            },
+            {
+              "displayName": "12/31",
+              "displayNameKey": "12/31",
+              "value": "%m/%d"
+            },
+            {
+              "displayName": "2019-12-31",
+              "displayNameKey": "2019-12-31",
+              "value": "%Y-%m-%d"
+            },
+            {
+              "displayName": "2019/12/31",
+              "displayNameKey": "2019/12/31",
+              "value": "%Y/%m/%d"
+            },
+            {
+              "displayName": "12/31/2019",
+              "displayNameKey": "12/31/2019",
+              "value": "%m/%d/%Y"
+            },
+            {
+              "displayName": "31/12/2019",
+              "displayNameKey": "31/12/2019",
+              "value": "%d/%m/%Y"
+            },
+            {
+              "displayName": "19/12/31",
+              "displayNameKey": "19/12/31",
+              "value": "%y/%m/%d"
+            },
+            {
+              "displayName": "12/31/19",
+              "displayNameKey": "12/31/19",
+              "value": "%m/%d/%y"
+            },
+            {
+              "displayName": "31/12/19",
+              "displayNameKey": "31/12/19",
+              "value": "%d/%m/%y"
+            }
+          ]          
+      }
+    },
+      "Size": {
+        "displayName": "Size",
+        "displayNameKey": "xSize",
+        "description": "X Axis Text Size",
+        "type": {
+          "numeric": true
+        }
+      },
+        "Color": {
+          "displayName": "Color",
+          "displayNameKey": "X_Color",
+          "type": {
+            "fill": {
+              "solid": {
+                "color": true
+              }
+            }
+          }
+        },
+        "Grid": {
+          "displayName": "Grid",
+          "displayNameKey": "xGrid",
+              "type": {
+                "bool": true
+          }
+        },
+        "GridColor": {
+          "displayName": "Grid Color",
+          "displayNameKey": "xGridColor",
+          "type": {
+            "fill": {
+              "solid": {
+                "color": true
+              }
+            }
+          }
+        },
+        "GridStyle": {
+          "displayName": "Grid Style",
+          "displayNameKey": "xGridStyle",
+          "description": "Setting Grid Style",
+          "type": {
+            "enumeration": [
+              {
+                "displayName": "━━━━━",
+                "displayNameKey": "GridStyleSolid",
+                "value": "1"
+              },
+              {
+                "displayName": "━ ━ ━ ━",
+                "displayNameKey": "GridStyleDashed",
+                "value": "2"
+              },
+              {
+                "displayName": " · · · · · · · · · · ·",
+                "displayNameKey": "GridStyleDotted",
+                "value": "3"
+              },
+              {
+                "displayName": "· ━ · ━ · ━ ·",
+                "displayNameKey": "GridStyleDottedDashed",
+                "value": "4"
+              }
+            ]         
+        }
+      }
+      }
+    },
+    "yAxis": {
+      "displayName": "Y Axis",
+      "displayNameKey": "Y_Axis",     
+      "properties": {
+        "show": {
+          "type": {
+            "bool": true
+          }
+        },
+        "Fonts": {
+          "displayName": "Fonts",
+          "displayNameKey": "Fonts",
+          "description": "Setting Fonts",
+          "type": {
+            "enumeration": [
+              {
+                "displayName": "Default",
+                "displayNameKey": "FontsDefault",
+                "value": "Arial"
+              },
+              {
+                "displayName": "Balto",
+                "displayNameKey": "Balto",
+                "value": "Balto"
+              },
+              {
+                "displayName": "Courier New",
+                "displayNameKey": "Courier New",
+                "value": "Courier New"
+              },
+              {
+                "displayName": "Droid Sans",
+                "displayNameKey": "Droid Sans",
+                "value": "Droid Sans"
+              },
+              {
+                "displayName": "Droid Serif",
+                "displayNameKey": "Droid Serif",
+                "value": "Droid Serif"
+              },
+              {
+                "displayName": "Droid Sans Mono",
+                "displayNameKey": "Droid Sans Mono",
+                "value": "Droid Sans Mono"
+              },
+              {
+                "displayName": "Gravitas One",
+                "displayNameKey": "Gravitas One",
+                "value": "Gravitas One"
+              },
+              {
+                "displayName": "Old Standard TT",
+                "displayNameKey": "Old Standard TT",
+                "value": "Old Standard TT"
+              },
+              {
+                "displayName": "Open Sans",
+                "displayNameKey": "Open Sans",
+                "value": "Open Sans"
+              },
+              {
+                "displayName": "Sans Serif",
+                "displayNameKey": "sans serif",
+                "value": "sans serif"
+              },
+              {
+                "displayName": "Raleway",
+                "displayNameKey": "Raleway",
+                "value": "Raleway"
+              },
+              {
+                "displayName": "Times New Roman",
+                "displayNameKey": "Times New Roman",
+                "value": "Times New Roman"
+              }
+            ]          
+        }
+      },
+      "Size": {
+        "displayName": "Size",
+        "displayNameKey": "ySize",
+        "description": "Y Axis Text Size",
+        "type": {
+          "numeric": true
+        }
+      },
+        "Color": {
+          "displayName": "Color",
+          "displayNameKey": "Y_Color",
+          "type": {
+            "fill": {
+              "solid": {
+                "color": true
+              }
+            }
+          }
+        },
+        "Grid": {
+          "displayName": "Grid",
+          "displayNameKey": "yGrid",
+              "type": {
+                "bool": true
+          }
+        },
+        "GridColor": {
+          "displayName": "Grid Color",
+          "displayNameKey": "yGridColor",
+          "type": {
+            "fill": {
+              "solid": {
+                "color": true
+              }
+            }
+          }
+        },
+        "GridStyle": {
+          "displayName": "Grid Style",
+          "displayNameKey": "yGridStyle",
+          "description": "Setting Grid Style",
+          "type": {
+            "enumeration": [
+              {
+                "displayName": "━━━━━",
+                "displayNameKey": "GridStyleSolid",
+                "value": "1"
+              },
+              {
+                "displayName": "━ ━ ━ ━",
+                "displayNameKey": "GridStyleDashed",
+                "value": "2"
+              },
+              {
+                "displayName": " · · · · · · · · · · ·",
+                "displayNameKey": "GridStyleDotted",
+                "value": "3"
+              },
+              {
+                "displayName": "· ━ · ━ · ━ ·",
+                "displayNameKey": "GridStyleDottedDashed",
+                "value": "4"
+              }
+            ]          
+        }
+      },
+      "Separator": {
+        "displayName": "Separator (,)",
+        "displayNameKey": "Use_1000_Separator",
+        "description": "Use 1000 Separator (,)",
+            "type": {
+              "bool": true
+        }
+      },
+      "yMax": {
+        "displayName": "End",
+        "displayNameKey": "yEnd",
+        "description": "End Value of Y Axis",
+        "placeHolderText":"Auto", 
+        "type": {
+          "numeric": true
+        }
+      },
+      "yMin": {
+        "displayName": "Start",
+        "displayNameKey": "yStart",
+        "description": "Start Value of Y Axis",
+        "placeHolderText":"Auto", 
+        "type": {
+          "numeric": true
+        }
+      }
+      }
+    },
+    "hover": {
+      "displayName": "Hover",
+      "displayNameKey": "Hover",     
+      "properties": {
+        "show": {
+          "type": {
+            "bool": true
+          }
+        },
+        "Fonts": {
+          "displayName": "Fonts",
+          "displayNameKey": "Fonts",
+          "description": "Setting Fonts",
+          "type": {
+            "enumeration": [
+              {
+                "displayName": "Default",
+                "displayNameKey": "FontsDefault",
+                "value": "Arial"
+              },
+              {
+                "displayName": "Balto",
+                "displayNameKey": "Balto",
+                "value": "Balto"
+              },
+              {
+                "displayName": "Courier New",
+                "displayNameKey": "Courier New",
+                "value": "Courier New"
+              },
+              {
+                "displayName": "Droid Sans",
+                "displayNameKey": "Droid Sans",
+                "value": "Droid Sans"
+              },
+              {
+                "displayName": "Droid Serif",
+                "displayNameKey": "Droid Serif",
+                "value": "Droid Serif"
+              },
+              {
+                "displayName": "Droid Sans Mono",
+                "displayNameKey": "Droid Sans Mono",
+                "value": "Droid Sans Mono"
+              },
+              {
+                "displayName": "Gravitas One",
+                "displayNameKey": "Gravitas One",
+                "value": "Gravitas One"
+              },
+              {
+                "displayName": "Old Standard TT",
+                "displayNameKey": "Old Standard TT",
+                "value": "Old Standard TT"
+              },
+              {
+                "displayName": "Open Sans",
+                "displayNameKey": "Open Sans",
+                "value": "Open Sans"
+              },
+              {
+                "displayName": "Sans Serif",
+                "displayNameKey": "sans serif",
+                "value": "sans serif"
+              },
+              {
+                "displayName": "Raleway",
+                "displayNameKey": "Raleway",
+                "value": "Raleway"
+              },
+              {
+                "displayName": "Times New Roman",
+                "displayNameKey": "Times New Roman",
+                "value": "Times New Roman"
+              },
+              {
+                "displayName": "Microsoft YaHei",
+                "displayNameKey": "Microsoft YaHei",
+                "value": "Microsoft YaHei"
+              }
+            ]          
+        }
+      },
+      "Size": {
+        "displayName": "Fonts Size",
+        "displayNameKey": "Fonts_Size",
+        "description": "Fonts Size",
+        "type": {
+          "numeric": true
+        }
+      },
+      "Fonts_Color": {
+        "displayName": "Fonts Color",
+        "displayNameKey": "Fonts_Color",
+        "type": {
+          "fill": {
+            "solid": {
+              "color": true
+            }
+          }
+        }
+      },
+        "Bg_Color": {
+          "displayName": "Background Color",
+          "displayNameKey": "Background_Color",
+          "type": {
+            "fill": {
+              "solid": {
+                "color": true
+              }
+            }
+          }
+        },
+        "Border_Color": {
+          "displayName": "Border Color",
+          "displayNameKey": "Border_Color",
+          "type": {
+            "fill": {
+              "solid": {
+                "color": true
+              }
+            }
+          }
+        },
+        "show_Date": {
+          "displayName": "Include Date",
+          "displayNameKey": "Include_Date", 
+          "type": {
+            "bool": true
+          }
+        },
+        "show_MA": {
+          "displayName": "Include MA",
+          "displayNameKey": "Include_MA", 
+          "type": {
+            "bool": true
+          }
+        }
+      }
+      },
+      "advance": {
+        "displayName": "Advance",
+        "displayNameKey": "Advance",     
+        "properties": {
+          "show_latest_cl": {
+            "displayName": "Latest Price",
+            "displayNameKey": "Show Latest Price", 
+            "type": {
+              "bool": true
+            }
+          },
+          "latest_cl_style": {
+            "displayName": "Style",
+            "displayNameKey": "Line Style", 
+            "type": {
+              "enumeration": [
+                {
+                  "displayName": "━━━━━",
+                  "displayNameKey": "LineStyleSolid",
+                  "value": "solid"
+                },
+                {
+                  "displayName": "━ ━ ━ ━",
+                  "displayNameKey": "LineStyleDashed",
+                  "value": "dash"
+                },
+                {
+                  "displayName": " · · · · · · · · · · ·",
+                  "displayNameKey": "LineStyleDotted",
+                  "value": "dot"
+                },
+                {
+                  "displayName": "· ━ · ━ · ━ ·",
+                  "displayNameKey": "LineStyleDottedDashed",
+                  "value": "dashdot"
+                }
+              ]    
+            }
+          },
+          "latest_cl_color": {
+            "displayName": "Color",
+            "displayNameKey": "Line Color",
+            "type": {
+              "fill": {
+                "solid": {
+                  "color": true
+                }
+              }
+            }
+          }
+      }
+    },
+    "modeBar": {
+      "displayName": "Others",
+      "displayNameKey": "Others",     
+      "properties": {
+        "display": {
+          "displayName": "Mode Bar",
+          "displayNameKey": "Mode Bar", 
+          "type": {
+            "enumeration": [
+              {
+                "displayName": "Display",
+                "displayNameKey": "Display",
+                "value": "T"
+              },
+              {
+                "displayName": "Hover",
+                "displayNameKey": "Hover",
+                "value": "H"
+              },
+              {
+                "displayName": "Remove",
+                "displayNameKey": "Remove",
+                "value": "F"
+              }
+            ]
+          }
+        }
+    }
+  }
+  },
+  "suppressDefaultTitle": true
+}
